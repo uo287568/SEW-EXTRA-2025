@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rutas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="rutas.xsd">
+    <ruta type="Paisajística // Histórica" recomendación="8">
+		<nombre>Ruta del Ferrocarril en San Tirso de Abres</nombre>
+		<transporte>A pie y en bicicleta</transporte>
+        <personas-adecuadas>Para todo tipo de público. Accesible en silla de ruedas</personas-adecuadas>
+		<detalles-ruta agencia="Turismo Asturias" duración-horas="4">
+			<fecha-inicio>15/07/2025</fecha-inicio>
+            <hora-inicio>10:00</hora-inicio>
+            <descripción>
+                <acciones>
+                    <acción>Recorre el antiguo trazado del ferrocarril minero que operó hasta 1964, 
+                        atravesando túneles y disfrutando de la frondosa vegetación junto al río Eo.</acción>
+                    <acción>Conoce la historia del ferrocarril en la zona y su importancia para la 
+                        minería y el desarrollo local.</acción>
+                    <acción>Disfruta de un recorrido accesible y seguro, ideal para ciclistas y senderistas, 
+                        con paneles informativos a lo largo del trayecto.</acción>
+                </acciones>
+                <elementos>
+                    <elemento incluido="Si">Casco minero</elemento>
+                    <elemento incluido="Si">Chaleco reflectante</elemento>
+                    <elemento incluido="No">Bicicletas</elemento>
+                    <elemento incluido="No">Comida y bebidas</elemento>
+                </elementos>
+            </descripción>
+            <lugar-inicio>
+                <lugar>San Tirso de Abres</lugar>
+                <dirección>Área recreativa junto al puente sobre el río Eo.</dirección>
+                <coordenadas longitud="-7.142427354257823" latitud="43.41033916846158" altitud-metros="36"/>
+            </lugar-inicio>
+		</detalles-ruta>
+		<hitos>
+            <hito>
+                <nombre>Túneles del antiguo ferrocarril</nombre>
+                <descripción-hito>Pasajes históricos excavados en la roca, utilizados para el paso del 
+                    tren minero.</descripción-hito>
+                <distancia-hito unidad="metros">610</distancia-hito>
+                <coordenadas longitud="-7.149012377722078" latitud="43.41299549370026" altitud-metros="62"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/TunelesFerrocarril.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Río Eo</nombre>
+                <descripción-hito>Acompaña gran parte del recorrido, ofreciendo paisajes naturales 
+                    de gran belleza y zonas de descanso.</descripción-hito>
+                <distancia-hito unidad="metros">420</distancia-hito>
+                <coordenadas longitud="-7.154012531993898" latitud="43.41201713078001" altitud-metros="37"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/RioEo.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Centro de Interpretación de la Pesca</nombre>
+                <descripción-hito>Espacio que ofrece información sobre la historia pesquera de la 
+                    región y la importancia del río Eo.</descripción-hito>
+                <distancia-hito unidad="metros">840</distancia-hito>
+                <coordenadas longitud="-7.164350591784718" latitud="43.41155041987275" altitud-metros="42"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/CentroPesca.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Antigua central eléctrica</nombre>
+                <descripción-hito>Construida en 1932 situada justo antes de atravesar otro de los túneles 
+                    horadados en la roca viva, que nos deja próximos a la pasarela peatonal sobre el Río Eo.</descripción-hito>
+                <distancia-hito unidad="metros">1140</distancia-hito>
+                <coordenadas longitud="-7.170814650176813" latitud="43.402485015918934" altitud-metros="62"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/CentroPesca.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>"Casetos"</nombre>
+                <descripción-hito>Pequeñas construcciones de mampostería, con cubierta de pizarra a dos aguas 
+                    que servían para albergar el carbón usado por el ferrocarril.</descripción-hito>
+                <distancia-hito unidad="metros">670</distancia-hito>
+                <coordenadas longitud="-7.163097633717294" latitud="43.40021610623295" altitud-metros="220"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/CentroPesca.png</foto>
+                </fotos>
+            </hito>
+        </hitos>
+        <referencias>
+			<referencia>https://www.turismoasturias.es/descubre/donde-ir/municipios/san-tirso-de-abres</referencia>
+            <referencia>https://www.santirsodeabres.es/en/ruta-del-ferrocarril</referencia>
+            <referencia>https://es.wikiloc.com/rutas-senderismo/ruta-del-ferrocarril-a-pontenova-san-tirso-de-abres-nueva-version-74106882</referencia>
+        </referencias>
+        <kml>xml/ruta1.kml</kml>
+        <svg>xml/perfil1.svg</svg>
+	</ruta>
+    <ruta type="Senderismo // Naturaleza" recomendación="9">
+		<nombre>Ruta de la Peña del Encanto</nombre>
+		<transporte>A pie</transporte>
+        <personas-adecuadas>Para senderistas con experiencia media. No recomendada para personas con movilidad reducida.</personas-adecuadas>
+		<detalles-ruta agencia="Turismo de San Tirso" duración-horas="3">
+			<fecha-inicio>17/07/2025</fecha-inicio>
+            <hora-inicio>10:15</hora-inicio>
+            <descripción>
+                <acciones>
+                    <acción>La Ruta de la Pena del Encanto es un recorrido de senderismo que permite adentrarse en un paisaje natural impresionante, siguiendo antiguas sendas utilizadas por pastores y lugareños.</acción>
+                    <acción>El sendero discurre entre bosques autóctonos y afloramientos rocosos, ofreciendo vistas espectaculares del valle del río Eo.</acción>
+                    <acción>El punto culminante es la Peña del Encanto, una formación rocosa envuelta en leyendas locales sobre seres mágicos y antiguos rituales.</acción>
+                </acciones>
+                <elementos>
+                    <elemento incluido="Si">Mapa de la ruta</elemento>
+                    <elemento incluido="Si">Seguro de accidentes</elemento>
+                    <elemento incluido="No">Guía turístico</elemento>
+                    <elemento incluido="No">Comida y bebidas</elemento>
+                </elementos>
+            </descripción>
+            <lugar-inicio>
+                <lugar>Plaza del Ayuntamiento de San Tirso de Abres</lugar>
+                <dirección>Plaza del Ayuntamiento, 1, 33774 San Tirso de Abres, Asturias, España</dirección>
+                <coordenadas longitud="-7.151697983753063" latitud="43.412540303203926" altitud-metros="74"/>
+            </lugar-inicio>
+		</detalles-ruta>
+		<hitos>
+            <hito>
+                <nombre>Puente medieval de San Tirso</nombre>
+                <descripción-hito>Antiguo puente de piedra que formaba parte de una ruta de comunicación 
+                    histórica entre Asturias y Galicia.</descripción-hito>
+                <distancia-hito unidad="metros">700</distancia-hito>
+                <coordenadas longitud="-7.153412281575685" latitud="43.41871726100285" altitud-metros="85"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/PuenteMedieval.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Arroyo de Ramalledo</nombre>
+                <descripción-hito>Encargado de regar numerosos bosquetes de flora autóctona 
+                    que se asientan a lo largo de su curso.</descripción-hito>
+                <distancia-hito unidad="metros">350</distancia-hito>
+                <coordenadas longitud="-7.157246698865485" latitud="43.42014305099363" altitud-metros="100"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/PuenteMedieval.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Pena do Encanto</nombre>
+                <descripción-hito>Zona donde fluye una misteriosa cascada fundida entre agua y piedra, 
+                    en la que aún late la leyenda de una dama encantada que sale de la roca con un 
+                    peine de plata cada noche de San Juan para hechizar a quien la vea.</descripción-hito>
+                <distancia-hito unidad="metros">870</distancia-hito>
+                <coordenadas longitud="-7.167726154339583" latitud="43.42174132962535" altitud-metros="213"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/PuenteMedieval.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Mirador de la Peña del Encanto</nombre>
+                <descripción-hito>Un impresionante mirador natural con vistas panorámicas del valle 
+                    y el río Eo.</descripción-hito>
+                <distancia-hito unidad="metros">540</distancia-hito>
+                <coordenadas longitud="-7.167211170147849" latitud="43.41687861264646" altitud-metros="281"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/MiradorPenaEncanto.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Vilela de Arriba</nombre>
+                <descripción-hito>Tramo en el que observaremos la capital municipal en la zona conocida como el Llano, 
+                    asentada sobre un valle rodeado de suaves montañas.</descripción-hito>
+                <distancia-hito unidad="metros">890</distancia-hito>
+                <coordenadas longitud="-7.156160469296799" latitud="43.41669157727491" altitud-metros="141"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/PuenteMedieval.png</foto>
+                </fotos>
+            </hito>
+        </hitos>
+        <referencias>
+			<referencia>https://www.santirsodeabres.es/en/ruta-de-a-pena-do-encanto</referencia>
+			<referencia>https://guiadeasturias.com/lugar/ruta-pena-do-encanto-misterio-magia-leyenda/#:~:text=Una%20vez%20remontado%20todo%20el%20arroyo%20llegamos%20a,San%20Juan%20para%20hechizar%20a%20quien%20la%20vea.</referencia>
+			<referencia>https://asturiasturismo.org/cascada-do-pena-do-encanto/</referencia>
+        </referencias>
+        <kml>xml/ruta2.kml</kml>
+        <svg>xml/perfil2.svg</svg>
+	</ruta>
+    <ruta type="Cultural // Senderismo" recomendación="7">
+		<nombre>Ruta de los Arrieiros</nombre>
+		<transporte>A pie</transporte>
+        <personas-adecuadas>Para todo tipo de público. Recomendado para amantes de la historia y la naturaleza.</personas-adecuadas>
+		<detalles-ruta agencia="Turismo de Asturias" duración-horas="5">
+			<fecha-inicio>20/07/2025</fecha-inicio>
+            <hora-inicio>09:00</hora-inicio>
+            <descripción>
+                <acciones>
+                    <acción>La Ruta de los Pañeiros sigue los antiguos caminos utilizados por los mercaderes de paños que, durante siglos, conectaban las aldeas del interior con los mercados costeros.</acción>
+                    <acción>A lo largo del recorrido, se pueden ver los restos de antiguas fábricas textiles, molinos de agua y puentes de piedra que atestiguan el auge del comercio de paños en la región.</acción>
+                    <acción>El sendero atraviesa frondosos bosques de castaños y robles, proporcionando una experiencia única que combina historia y naturaleza.</acción>
+                </acciones>
+                <elementos>
+                    <elemento incluido="Si">Mapa de la ruta</elemento>
+                    <elemento incluido="Si">Seguro de accidentes</elemento>
+                    <elemento incluido="Si">Botellas de agua</elemento>
+                    <elemento incluido="No">Cámara de fotos</elemento>
+                </elementos>
+            </descripción>
+            <lugar-inicio>
+                <lugar>Ermita de San Roque</lugar>
+                <dirección>Lugar Espasande, 32A, 33774 Espasande, Asturias</dirección>
+                <coordenadas longitud="-7.137581390144663" latitud="43.392663741418154" altitud-metros="313"/>
+            </lugar-inicio>
+		</detalles-ruta>
+		<hitos>
+            <hito>
+                <nombre>Pico de Arredondas</nombre>
+                <descripción-hito>Elevación montañosa que ofrece vistas panorámicas del entorno rural y natural 
+                    del occidente asturiano, ideal para senderismo y naturaleza.</descripción-hito>
+                <distancia-hito unidad="metros">1090</distancia-hito>
+                <coordenadas longitud="-7.12793127276982" latitud="43.3857963867245" altitud-metros="514"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/MolinoMazonovo.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Pico Xunqueira</nombre>
+                <descripción-hito>Ofrece amplias vistas del valle del Eo y sus alrededores, siendo un lugar apreciado
+                     para caminatas y disfrute del paisaje astur-galaico.</descripción-hito>
+                <distancia-hito unidad="metros">1250</distancia-hito>
+                <coordenadas longitud="-7.113809665108107" latitud="43.39042072435311" altitud-metros="650"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/MolinoMazonovo.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Molino de Mazonovo</nombre>
+                <descripción-hito>Uno de los conjuntos de molinos hidráulicos más grandes de España, con una 
+                    impresionante colección de mecanismos de molienda tradicionales.</descripción-hito>
+                <distancia-hito unidad="metros">760</distancia-hito>
+                <coordenadas longitud="-7.120723354569173" latitud="43.395021228473496" altitud-metros="412"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/MolinoMazonovo.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Arroyo de Fraga</nombre>
+                <descripción-hito>Curso de agua que serpentea entre bosques y laderas en San Tirso de Abres, 
+                    destacando por su riqueza natural y paisajística.</descripción-hito>
+                <distancia-hito unidad="metros">800</distancia-hito>
+                <coordenadas longitud="-7.128745116737722" latitud="43.39924648773678" altitud-metros="230"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/MolinoMazonovo.png</foto>
+                </fotos>
+            </hito>
+            <hito>
+                <nombre>Puente de los Arrieiros</nombre>
+                <descripción-hito>Un puente medieval de piedra, clave en la ruta comercial de los paños, que servía 
+                    como punto de paso para los mercaderes entre Asturias y Galicia.</descripción-hito>
+                <distancia-hito unidad="metros">920</distancia-hito>
+                <coordenadas longitud="-7.138923091287538" latitud="43.40290654236975" altitud-metros="95"/>
+                <fotos>
+                    <foto>xml/fotos-hitos/PuentePañeiros.png</foto>
+                </fotos>
+            </hito>
+        </hitos>
+        <referencias>
+			<referencia>https://www.santirsodeabres.es/en/ruta-de-los-arrieros</referencia>
+			<referencia>https://guiadeasturias.com/lugar/ruta-los-arrieros-una-gran-mancha-forestal-cambia-color-segun-la-estacion-del-ano/#:~:text=Ruta%20de%20los%20Arrieros%201%20Dificultad%3A%20BAJA%202,explicativo%20en%20el%20inicio%20de%20la%20ruta.%20</referencia>
+			<referencia>https://www.oscos-eo.net/node/1398</referencia>
+        </referencias>
+        <kml>xml/ruta3.kml</kml>
+        <svg>xml/perfil3.svg</svg>
+	</ruta>
+</rutas>

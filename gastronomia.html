@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>San Tirso de Abres - Gastronomía</title>
+    <meta name ="author" content ="Álvaro Arias" />
+    <meta name ="description" content ="Documento con la gastronomía de San Tirso de Arbes" />
+    <meta name ="keywords" content ="gastronomía, platos, alimentos, restaurantes" />
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel=icon href="multimedia/imagenes/favicon.ico" type="image/vnd.microsoft.icon" />
+</head>
+<body>
+    <header>
+        <h1><a title="Enlace al índice" href="index.html">San Tirso de Abres</a></h1>
+        <nav>
+            <a title="Enlace al índice" href="index.html">Página principal</a>
+            <a title="Enlace a la página de gastronomía" href="gastronomia.html" class="active">Gastronomía</a>
+            <a title="Enlace a la página de rutas" href="rutas.html">Rutas</a>
+            <a title="Enlace a la página de meteorología" href="meteorologia.html">Meteorología</a>
+            <a title="Enlace a la página del juego" href="juego.html">Juego</a>
+            <a title="Enlace a la página de reservas" href="reservas.php">Reservas</a>
+            <a title="Enlace a la página de ayuda" href="ayuda.html">Ayuda</a>
+        </nav>
+    </header>
+    <h2>Gastronomía</h2>
+    <aside>
+        <h3>Música de fondo</h3>
+        <p>Disfruta de la música tradicional asturiana mientras descubres los sabores de San Tirso de Abres.</p>
+        <audio controls>
+            <source src="multimedia/audios/audioCancion.mp3" type="audio/mpeg">
+            <source src="multimedia/audios/AudioCancion.wav" type="audio/wav">
+        </audio>
+    </aside>
+    <section>
+        <h3>Platos típicos</h3>        
+        <ol>
+            <li>Fabada asturiana</li>
+            <li>Cachopo</li>
+            <li>Salmón del río Eo</li>
+            <li>Pote asturiano</li>
+        </ol>
+        <img src="multimedia/imagenes/Platos.jpg" alt="Platos típicos de San Tirso de Abres"/>
+    </section>
+    <section>
+        <h3>Ingredientes más utilizados</h3>
+        <ul>
+            <li>Fabas</li>
+            <li>Embutidos</li>
+            <li>Quesos
+                <ol>
+                    <li>Cabrales</li>
+                    <li>Afuega'l Pitu</li>
+                </ol>
+            </li>
+            <li>Manzana (para sidra)</li>
+            <li>Carne de ternera</li>
+        </ul>
+        <p>El siguiente video muestra la elaboración de la tradicional fabada asturiana.</p>
+        <video controls preload="auto">
+            <source src="multimedia/videos/RecetaFabada.mp4" type="video/mp4">
+            <source src="multimedia/videos/RecetaFabada.3gp" type="video/3gpp">
+        </video>
+    </section>
+    <section>
+        <h3>Restaurantes recomendados</h3>
+        <dl>
+            <dt><a href="https://maps.app.goo.gl/TVJULLvqYgs2Ew4t6">Restaurante Amaido</a></dt>
+            <dd>Ofrece cocina tradicional asturiana en un entorno que respeta la arquitectura popular, 
+                utilizando productos de la propia huerta y de la comarca.</dd>
+            <dt><a href="https://maps.app.goo.gl/PgR7KQez7kCaTFUo7">Restaurante San Isidro</a></dt>
+            <dd>Conocido por su comida casera y abundante, este restaurante destaca por platos bien 
+                cocinados y un servicio amable a precios asequibles.</dd>
+            <dt><a href="https://maps.app.goo.gl/M7XDomYnq8Q25poA7">La Farrapa Bar-Tienda</a></dt>
+            <dd>Este acogedor bar-tienda es el lugar perfecto para disfrutar de un aperitivo 
+                en un ambiente con encanto.</dd>
+        </dl>
+    </section>
+    <section>
+        <h3>Postres típicos</h3>
+        <table>
+            <caption>Postres típicos de San Tirso de Abres</caption>
+            <thead>
+                <tr>
+                    <th id="postre" scope="col">Postre</th>
+                    <th id="descripcion" scope="col">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" headers="postre">Arroz con leche</th>
+                    <td headers="descripcion">Postre cremoso con canela y azúcar caramelizado.</td>
+                </tr>
+                <tr>
+                    <th scope="row" headers="postre">Casadielles</th>
+                    <td headers="descripcion">Empanadillas rellenas de nueces y miel.</td>
+                </tr>
+                <tr>
+                    <th scope="row" headers="postre">Frixuelos</th>
+                    <td headers="descripcion">Tortitas finas similares a los crepes.</td>
+                </tr>
+                <tr>
+                    <th scope="row" headers="postre">Carajitos</th>
+                    <td headers="descripcion">Galletas crujientes de avellana.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

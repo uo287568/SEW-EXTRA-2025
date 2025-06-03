@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>San Tirso de Abres - Juego</title>
+    <meta name ="author" content ="Álvaro Arias" />
+    <meta name ="description" content ="Documento con un test del concejo San Tirso de Abres" />
+    <meta name ="keywords" content ="juego, preguntas, test" />
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel=icon href="multimedia/imagenes/favicon.ico" type="image/vnd.microsoft.icon" />
+    <script src="js/juego.js"></script>
+</head>
+<body>
+    <header>
+        <h1><a title="Enlace al índice" href="index.html">San Tirso de Abres</a></h1>
+        <nav>
+            <a title="Enlace al índice" href="index.html">Página principal</a>
+            <a title="Enlace a la página de gastronomía" href="gastronomia.html">Gastronomía</a>
+            <a title="Enlace a la página de rutas" href="rutas.html">Rutas</a>
+            <a title="Enlace a la página de meteorología" href="meteorologia.html">Meteorología</a>
+            <a title="Enlace a la página del juego" href="juego.html" class="active">Juego</a>
+            <a title="Enlace a la página de reservas" href="reservas.php">Reservas</a>
+            <a title="Enlace a la página de ayuda" href="ayuda.html">Ayuda</a>
+        </nav>
+    </header>
+    <h2>Juego</h2>
+    <aside><h3>Respoda a las siguientes preguntas:</h3></aside>
+    <button>Enviar respuestas</button>
+    <footer></footer>
+    <script>
+        const juego = new Juego();
+        juego.buildQuiz();
+
+        const submitButton = document.querySelector('button');
+        submitButton.addEventListener('click', () => {
+            juego.showResult();
+        });
+    </script>
+</body>
+</html>

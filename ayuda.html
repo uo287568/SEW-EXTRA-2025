@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>San Tirso de Abres - Ayuda</title>
+    <meta name ="author" content ="Álvaro Arias" />
+    <meta name ="description" content ="Documento de ayuda para ayudar al usuario a manejar el sitio web" />
+    <meta name ="keywords" content ="ayuda, opciones, funcionalidad, usabilidad" />
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel=icon href="multimedia/imagenes/favicon.ico" type="image/vnd.microsoft.icon" />
+</head>
+<body>
+    <header>
+        <h1><a title="Enlace al índice" href="index.html">San Tirso de Abres</a></h1>
+        <nav>
+            <a title="Enlace al índice" href="index.html">Página principal</a>
+            <a title="Enlace a la página de gastronomía" href="gastronomia.html">Gastronomía</a>
+            <a title="Enlace a la página de rutas" href="rutas.html">Rutas</a>
+            <a title="Enlace a la página de meteorología" href="meteorologia.html">Meteorología</a>
+            <a title="Enlace a la página del juego" href="juego.html">Juego</a>
+            <a title="Enlace a la página de reservas" href="reservas.php">Reservas</a>
+            <a title="Enlace a la página de ayuda" href="ayuda.html" class="active">Ayuda</a>
+        </nav>
+    </header>
+    <h2>Ayuda</h2>
+    <section>
+        <h3>1. Introducción</h3>
+        <p>Este sitio web ha sido desarrollado como parte del proyecto de la asignatura "Software y estándares para la Web" del Grado en Ingeniería Informática del Software. Su propósito principal es presentar los recursos turísticos del concejo de San Tirso de Abres, Asturias, ofreciendo a los usuarios una experiencia completa para explorar la gastronomía, rutas, meteorología, y opciones de reserva en la región.</p>
+        <p>Este documento de ayuda tiene como objetivo guiarte a través de las diferentes secciones y funcionalidades del sitio web. Aquí encontrarás explicaciones detalladas sobre cómo navegar, interactuar con el contenido, y sacar el máximo provecho de tu visita.</p>
+    </section>
+
+    <section>
+        <h3>2. Descripción de las opciones del menú</h3>
+
+        <article>
+            <h4>Página principal</h4>
+            <p>La Página principal es la entrada a nuestro sitio web, diseñada para ofrecerte una visión general atractiva y funcional del concejo de San Tirso de Abres.</p>
+            <ul>
+                <li>Carrusel de Imágenes: En la parte superior de la página, encontrarás un carrusel interactivo que muestra una selección de 8 imágenes destacadas de San Tirso de Abres. Puedes navegar por estas imágenes usando los botones de anterior (&lt;) y siguiente (&gt;) ubicados a los lados del carrusel. Una de las imágenes clave es un mapa de situación del concejo, dándote una referencia geográfica inmediata.</li>
+                <li>Sección de Noticias: Más abajo, la página presenta una sección de noticias relevantes sobre San Tirso de Abres y sus alrededores (incluyendo Taramundi y Vegadeo). Estas noticias se cargan dinámicamente consumiendo un servicio web externo, lo que asegura que la información esté actualizada. Cada noticia muestra su título, una breve descripción y la fecha de publicación.</li>
+            </ul>
+        </article>
+
+        <article>
+            <h4>Gastronomía</h4>
+            <p>La sección de Gastronomía te invita a un viaje culinario por los sabores de San Tirso de Abres.</p>
+            <ul>
+                <li>Música de Fondo: Al acceder a esta página, podrás disfrutar de música tradicional asturiana de fondo. Para controlar la reproducción, utiliza los controles de audio integrados, que te permiten pausar, reanudar o ajustar el volumen.</li>
+                <li>Platos Típicos: Descubre una lista de los platos más emblemáticos de la región, acompañados de una imagen representativa.</li>
+                <li>Ingredientes y Recetas: Explora los ingredientes más utilizados en la cocina local. Además, se incluye un video que te guiará en la elaboración de la tradicional fabada asturiana, permitiéndote aprender de forma visual y práctica.</li>
+                <li>Restaurantes Recomendados: Si planeas una visita, te proporcionamos una lista de restaurantes recomendados en San Tirso de Abres, con una breve descripción de lo que ofrece cada uno.</li>
+                <li>Postres Típicos: Para cerrar la experiencia, una tabla de postres típicos detalla los dulces más populares del concejo, junto con una breve descripción de cada uno.</li>
+            </ul>
+        </article>
+
+        <article>
+            <h4>Rutas</h4>
+            <p>La sección de Rutas te permite explorar los diferentes itinerarios turísticos disponibles en San Tirso de Abres. Para visualizar la información de las rutas, debes seleccionar un archivo XML que contenga los datos de las rutas.</p>
+            <ul>
+                <li>Carga de Archivos XML: En esta página, encontrarás una opción para "Selecciona el archivo XML para traducir a HTML". Haz clic en el botón para buscar y seleccionar el archivo `rutas.xml` desde tu dispositivo local. Una vez cargado, la página procesará la información y mostrará los detalles de cada ruta.</li>
+                <li>Visualización de la Información de las Rutas:
+                    <ul>
+                        <li>Cada ruta cargada desde el XML presentará su nombre, tipo, recomendación, medio de transporte, personas adecuadas, fecha y hora de inicio, y duración.</li>
+                        <li>Se detallarán las acciones que se pueden realizar en la ruta y los elementos incluidos o no.</li>
+                        <li>Verás información sobre el lugar de inicio y un listado de hitos importantes a lo largo de la ruta, cada uno con su descripción y fotografías asociadas.</li>
+                    </ul>
+                </li>
+                <li>Mapas Interactivos (Planimetría): Por cada ruta, se generará y mostrará un mapa interactivo que representa la planimetría de la ruta. Este mapa, impulsado por Mapbox, cargará los datos geográficos de un archivo KML asociado a la ruta, permitiéndote visualizar su trazado. Podrás acercar, alejar y moverte por el mapa para explorar el recorrido.</li>
+                <li>Gráficos de Altimetría: Debajo de cada mapa, se insertará un gráfico SVG que representa la altimetría de la ruta. Este gráfico te proporcionará información visual sobre el perfil de elevación del terreno a lo largo del recorrido.</li>
+            </ul>
+        </article>
+
+        <article>
+            <h4>Meteorología</h4>
+            <p>La sección de Meteorología te proporciona el pronóstico del tiempo para San Tirso de Abres, permitiéndote planificar tus actividades con información actualizada.</p>
+            <ul>
+                <li>Previsión a 7 Días: Al acceder a esta página, se cargará automáticamente una tabla con el pronóstico meteorológico para los próximos 7 días. Esta información es obtenida en tiempo real a través de un servicio web externo.</li>
+                <li>Datos Detallados: Por cada día, la tabla muestra los siguientes datos:
+                    <ul>
+                        <li>Un icono del tiempo que representa las condiciones atmosféricas (soleado, nublado, lluvioso, etc.).</li>
+                        <li>La fecha correspondiente.</li>
+                        <li>La temperatura media del día en grados Celsius.</li>
+                        <li>La temperatura máxima esperada.</li>
+                        <li>La temperatura mínima prevista.</li>
+                        <li>El porcentaje de humedad.</li>
+                        <li>La cantidad de lluvia esperada en milímetros (si aplica).</li>
+                    </ul>
+                </li>
+                <li>Ubicación de la Previsión: El pronóstico se basa en las coordenadas geográficas de San Tirso de Abres, asegurando la relevancia de los datos para el concejo.</li>
+            </ul>
+        </article>
+
+        <article>
+            <h4>Juego</h4>
+            <p>La sección Juego te ofrece un test interactivo para poner a prueba tus conocimientos sobre San Tirso de Abres y el contenido de este sitio web.</p>
+            <ul>
+                <li>Participación en el Test: La página mostrará una serie de 10 preguntas con opciones múltiples. Deberás seleccionar una respuesta para cada pregunta.</li>
+                <li>Envío de Respuestas: Una vez que hayas respondido todas las preguntas, haz clic en el botón "Enviar respuestas" para obtener tus resultados.</li>
+                <li>Resultados del Test: Después de enviar tus respuestas, el sistema te indicará si has respondido correctamente a todas las preguntas. Si no has contestado alguna pregunta, se te pedirá que lo hagas. Además, se mostrará la puntuación final que has obtenido (número de aciertos sobre el total de preguntas) y se revelarán las respuestas correctas de cada pregunta para que puedas revisar tus errores y aprender.</li>
+            </ul>
+        </article>
+
+        <article>
+            <h4>Reservas</h4>
+            <p>La sección de Reservas te permite gestionar la administración de la base de datos, registrar usuarios, iniciar sesión, ver recursos turísticos disponibles, calcular precios y realizar/anular reservas.</p>
+            <ul>
+                <li>Administración de Base de Datos:
+                    <ul>
+                        <li>Crear Base de Datos: Permite inicializar la base de datos de reservas, creando las tablas necesarias.</li>
+                        <li>Importar desde CSV: Facilita la carga de datos desde un archivo CSV (`reservas.csv`) a las tablas de la base de datos, incluyendo usuarios, recursos turísticos, contactos, imágenes y reservas.</li>
+                        <li>Exportar a CSV: Permite exportar todos los datos de las tablas de la base de datos a un archivo CSV (`reservas_export.csv`) para su posterior uso o respaldo.</li>
+                    </ul>
+                </li>
+                <li>Registro de Usuario:
+                    <ul>
+                        <li>Puedes crear una nueva cuenta de usuario proporcionando tu DNI, nombre, apellidos, correo electrónico y contraseña. Esta función es necesaria para poder realizar reservas.</li>
+                    </ul>
+                </li>
+                <li>Inicio de Sesión:
+                    <ul>
+                        <li>Para acceder a las funcionalidades de reserva, debes iniciar sesión con tu DNI y contraseña registrados. Una vez iniciada la sesión, el sistema te confirmará tu DNI de usuario.</li>
+                    </ul>
+                </li>
+                <li>Realizar Reserva:
+                    <ul>
+                        <li>Ver Recursos Disponibles: La página mostrará una lista de los recursos turísticos disponibles para reservar, incluyendo su ID, nombre, tipo, descripción, precio y capacidad máxima, junto con imágenes asociadas.</li>
+                        <li>Calcular Precio: Antes de confirmar una reserva, puedes seleccionar un recurso, la fecha de inicio, la fecha de fin y la cantidad de personas. El sistema calculará el precio total de la reserva y verificará si hay disponibilidad para el número de personas y fechas seleccionadas. Si no hay plazas suficientes, se te informará.</li>
+                        <li>Confirmar Reserva: Una vez calculado el precio y verificada la disponibilidad, y siempre que hayas iniciado sesión, podrás proceder a realizar la reserva. Se te proporcionará un número de reserva, detalles del recurso, fechas, cantidad de personas y el precio final. También se mostrarán contactos útiles relacionados con el recurso reservado.</li>
+                    </ul>
+                </li>
+                <li>Mis Reservas:
+                    <ul>
+                        <li>En esta sección, podrás consultar todas las reservas que has realizado, incluyendo su ID, el nombre del recurso, las fechas, la cantidad de personas y el precio.</li>
+                        <li>Anular Reserva: Cada reserva listada incluirá un botón para "Anular", permitiéndote cancelar una reserva existente. Deberás confirmar la anulación antes de que se procese.</li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+
+        <article>
+            <h4>Ayuda</h4>
+            <p>Esta es la sección de ayuda que estás consultando. Aquí encontrarás respuestas a las dudas más frecuentes sobre el uso del sitio.</p>
+        </article>
+    </section>
+
+    <section>
+        <h3>3. Consejos de uso y accesibilidad</h3>
+        <p>Para garantizar la mejor experiencia al utilizar este sitio web, te recomendamos tener en cuenta los siguientes consejos y consideraciones de accesibilidad:</p>
+        <ul>
+            <li>Navegadores Compatibles: Este sitio web ha sido diseñado para funcionar correctamente en los navegadores web modernos más populares, como Google Chrome, Mozilla Firefox, Microsoft Edge y Safari. Asegúrate de tener la última versión de tu navegador para un rendimiento óptimo.</li>
+            <li>Dispositivos Recomendados: Aunque el sitio es adaptable, la experiencia de usuario es mejor en dispositivos de escritorio o tabletas debido a la cantidad de información y elementos interactivos, como mapas y tablas, que se muestran.</li>
+            <li>JavaScript Habilitado: Algunas funcionalidades clave del sitio, como el carrusel de imágenes, el juego y la carga de datos en la sección de meteorología y rutas, dependen de JavaScript. Asegúrate de que JavaScript esté habilitado en la configuración de tu navegador para que el sitio funcione completamente.</li>
+            <li>Archivos Locales en Rutas: Para visualizar la información de las rutas, necesitarás tener los archivos XML y KML de las rutas descargados en tu dispositivo local y cargarlos manualmente a través de la interfaz. Asegúrate de que estos archivos estén accesibles cuando intentes usar esa sección.</li>
+            <li>Accesibilidad General:
+            <ul>
+                <li>Navegación por Teclado: Puedes navegar por los elementos interactivos del sitio web utilizando la tecla Tab para moverte entre enlaces y campos de formulario.</li>
+                <li>Contraste de Colores: Se ha procurado mantener un buen contraste entre el texto y el fondo para facilitar la lectura.</li>
+                <li>Etiquetado Semántico: Los elementos HTML están etiquetados de forma semántica para mejorar la comprensión por parte de los lectores de pantalla y otras tecnologías de asistencia.</li>
+            </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>4. Contacto o soporte</h3>
+        <p>Si tienes alguna pregunta, encuentras algún problema técnico o necesitas ayuda adicional con el sitio web, no dudes en contactar al administrador.</p>
+        <ul>
+            <li>Administrador del Sitio: Álvaro Arias Martínez De Vega</li>
+            <li>Correo Electrónico de Soporte: <a href="mailto:uo287568@uniovi.es">uo287568@uniovi.es</a></li>
+            <li>Horario de Soporte: Lunes a Viernes, de 9:00 a 17:00 (hora local de Asturias, España).</li>
+            <li>Reporte de Errores: Si detectas algún error o fallo en el funcionamiento del sitio, te agradecería que me lo comunicaras incluyendo una descripción detallada del problema y los pasos para reproducirlo. Esto me ayudará a mejorar el sitio continuamente.</li>
+        </ul>
+    </section>
+</body>
+</html>

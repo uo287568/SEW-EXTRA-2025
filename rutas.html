@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>San Tirso de Abres - Rutas</title>
+    <meta name ="author" content ="Álvaro Arias" />
+    <meta name ="description" content ="Documento con la información de las rutas por el concejo" />
+    <meta name ="keywords" content ="Rutas, KML, SVG, XML" />
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel=icon href="multimedia/imagenes/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>        
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src='js/rutas.js'></script>
+</head>
+<body>
+    <header>
+        <h1><a title="Enlace al índice" href="index.html">San Tirso de Abres</a></h1>
+        <nav>
+            <a title="Enlace al índice" href="index.html">Página principal</a>
+            <a title="Enlace a la página de gastronomía" href="gastronomia.html">Gastronomía</a>
+            <a title="Enlace a la página de rutas" href="rutas.html" class="active">Rutas</a>
+            <a title="Enlace a la página de meteorología" href="meteorologia.html">Meteorología</a>
+            <a title="Enlace a la página del juego" href="juego.html">Juego</a>
+            <a title="Enlace a la página de reservas" href="reservas.php">Reservas</a>
+            <a title="Enlace a la página de ayuda" href="ayuda.html">Ayuda</a>
+        </nav>
+    </header>
+    <h2>Circuito</h2>        
+    <main>
+        <h3>Interpretación de archivos</h3>
+        <p>
+            <label>Selecciona el archivo XML para traducir a HTML: <input type="file" accept=".xml"/></label>
+        </p>
+        <article><h3>Información de las rutas disponibles:</h3></article>
+    </main>
+    <script>
+        const rutas = new Rutas();
+    </script>
+</body>
+</html>

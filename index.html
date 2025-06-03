@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>San Tirso de Abres</title>
+    <meta name ="author" content ="Álvaro Arias" />
+    <meta name ="description" content ="Página principal del proyecto de evaluación extraordinaria de SEW" />
+    <meta name ="keywords" content ="indice, carrusel, noticias" />
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel=icon href="multimedia/imagenes/favicon.ico" type="image/vnd.microsoft.icon" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a title="Enlace al índice" href="index.html">San Tirso de Abres</a></h1>
+        <nav>
+            <a title="Enlace al índice" href="index.html" class="active">Página principal</a>
+            <a title="Enlace a la página de gastronomía" href="gastronomia.html">Gastronomía</a>
+            <a title="Enlace a la página de rutas" href="rutas.html">Rutas</a>
+            <a title="Enlace a la página de meteorología" href="meteorologia.html">Meteorología</a>
+            <a title="Enlace a la página del juego" href="juego.html">Juego</a>
+            <a title="Enlace a la página de reservas" href="reservas.php">Reservas</a>
+            <a title="Enlace a la página de ayuda" href="ayuda.html">Ayuda</a>
+        </nav>
+    </header>
+    <h2>Página Principal</h2>
+    <main>
+        <section>
+            <h3>Carrusel de Imágenes</h3>
+            <img src="multimedia/imagenes/Molino.jpg" alt="Imagen 1">
+            <img src="multimedia/imagenes/Mapa.jpg" alt="Imagen 2">
+            <img src="multimedia/imagenes/PenaEncanto.jpg" alt="Imagen 3">
+            <img src="multimedia/imagenes/MiradorPenaEncanto.jpg" alt="Imagen 4">
+            <img src="multimedia/imagenes/TunelFerrocarril.jpg" alt="Imagen 5">
+            <img src="multimedia/imagenes/Vilela.jpg" alt="Imagen 6">
+            <img src="multimedia/imagenes/RioEo.jpg" alt="Imagen 7">
+            <img src="multimedia/imagenes/PuenteMedieval.jpg" alt="Imagen 8">
+            <button data-action="prev"> &lt; </button>
+            <button data-action="next"> &gt; </button>
+            <script>
+                const index = new Index();
+                index.carrusel();
+            </script>
+        </section>
+    </main>
+    <section>
+        <h3>Noticias San Tirso de Abres</h3>
+        <aside></aside>
+        <script>
+            index.cargaNoticias();
+        </script>
+    </section>
+</body>
+</html>

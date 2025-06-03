@@ -1,0 +1,223 @@
+/* Álvaro Arias Martínez De Vega, UO287568 */
+/* Color de fondo del body: #1A5653 */
+/* Color de texto del body: #FFFFFF */
+/* Color de fondo del header: #006461 */
+/* Color de fondo del th de la tabla: #4CAF50 */
+/* Color de texto del th de la tabla: #000000 */
+/* Color de fondo del button: #925801 */
+/* Color de texto del button: #FFFFFF */
+
+/*Especificidad 001*/
+body {
+    font-family: Tahoma, Verdana, sans-serif;
+    color:#FFFFFF;
+    background-color: #1A5653;
+    font-size: 1.2em;
+}
+/*Especificidad 001*/
+header {
+    background-color: #006461;
+    /* color:#FFFFFF; Heredado del body */
+    padding: 0.5em;
+}
+/*Especificidad 001*/
+h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1em;
+}
+/*Especificidad 001*/
+h2 {
+    text-align: center;
+    margin-top: 1.5em;
+}
+/*Especificidad 001*/
+a {
+    color:#FFFFFF;
+    /* background-color: #1A5653; Heredado del body */
+}
+/*Especificidad 001*/
+ul {
+    list-style-type: square;
+}
+/*Especificidad 001*/
+ol {
+    list-style-type: upper-alpha;
+    list-style-position: inside;
+}
+/*Especificidad 001*/
+dt {
+    font-weight: bold;
+}
+/*Especificidad 001*/
+dd {
+    text-align: justify;
+    font-style: italic;
+}
+/*Especificidad 001*/
+video, img {
+    width: 100%;
+    height: auto;
+}
+/*Especificidad 001*/
+label {
+    cursor: pointer;
+}
+/*Especificidad 001*/
+footer {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 1.25em; 
+}
+/*Especificidad 001*/
+form {
+    margin-bottom: 1.5em;
+}
+/*Especificidad 001*/
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 0.625em 1.25em;
+    font-size: 1em;
+    background-color: #925801;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0.3125em; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+/*Especificidad 002*/
+aside article {
+    margin-bottom: 0.625em; 
+}
+/*Especificidad 002*/
+h1 a {
+    text-decoration: none;
+}
+/*Especificidad 002*/
+ul ol {
+    list-style-type: lower-greek;
+}
+/*Especificidad 002*/
+ol li {
+    font-size: 1.1em;
+}
+/*Especificidad 002*/
+article h3 {
+    margin-top: 0;
+}
+/*Especificidad 012*/
+main aside {
+    width: 100%;
+    height: 40em;
+}
+/*Especificidad 002*/
+form > p {
+    margin: 0.6em 0;
+}
+/*Especificidad 011*/
+input[type="text"], input[type="date"], input[type="number"] {
+    padding: 0.5em;
+    margin: 0.3em 0;
+    border: 0.1em solid #ccc;
+    border-radius: 0.4em;
+}
+/*Especificidad 011*/
+input[type="radio"] {
+    margin-right: 0.8em;
+}
+/*Especificidad 011*/
+button:hover {
+    background-color: #0056b3;
+    /*Hereda color de texto del button*/
+}
+/*Especificidad 011*/
+a:hover {
+    color: #000000;
+    background: #CFFEAA;
+}
+/*Especificidad 011*/
+a:active {
+    color: #CFFEAA;
+    background: #000000;
+}
+/*Especificidad 012*/
+main > section:nth-of-type(1) {
+    width: 100%;
+    max-width: 100vh;
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1em;
+}
+/*Especificidad 012*/
+section:nth-of-type(2) article {
+    border: 0.0625em solid #ccc;
+    border-radius: 0.3125em;
+    padding: 0.625em;
+    margin: 0.625em;
+}
+/*Especificidad 012*/
+section:nth-of-type(4) table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    text-align: center;
+}
+/*Especificidad 012*/
+section:nth-of-type(4) caption {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 0.7em;
+}
+/*Especificidad 012*/
+section:nth-of-type(4) th {
+    background-color: #4CAF50;
+    color: #000000;
+    padding: 1em;
+    border: 0.2em solid #FFFFFF;
+}
+/*Especificidad 012*/
+section:nth-of-type(4) td {
+    padding: 0.7em;
+    border: 0.2em solid #FFFFFF;
+}
+/*Especificidad 012*/
+article:nth-of-type(1) td {
+    border: 0.1em solid #000; 
+}
+/*Especificidad 013*/
+main > section:nth-of-type(1) button {
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    padding: 0.5em;
+    border: none;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    font-size: 1em;
+}
+/*Especificidad 013*/
+main > section:nth-of-type(1) img {
+    width: 100%;
+    max-width: 100vh;
+    height: 40em;
+    position: absolute;
+    transition: all 0.5s;
+    object-fit: cover;
+    border-radius: 0.5em;
+}
+/*Especificidad 023*/
+main > section:nth-of-type(1) button:active {
+    transform: scale(1.1);
+}
+/*Especificidad 023*/
+main > section:nth-of-type(1) button[data-action=prev] {
+    top: 50%;
+    left: 2%;
+}
+/*Especificidad 023*/
+main > section:nth-of-type(1) button[data-action=next] {
+    top: 50%;
+    right: 2%;
+}
