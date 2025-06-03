@@ -25,7 +25,7 @@ class Meteorologia {
                 const temperaturaMin = dia.temp.min;
                 const humedad = dia.humidity;
                 const lluvia = dia.rain ?? 0;
-                const iconoTiempo = `http://openweathermap.org/img/wn/${dia.weather[0].icon}.png`;
+                const iconoTiempo = `https://openweathermap.org/img/wn/${dia.weather[0].icon}.png`;
 
                 const row1 = $('<tr>').appendTo(table);
                 $('<td rowspan="6" headers="icono">').html(`<img src="${iconoTiempo}" alt="Weather icon">`).appendTo(row1);
