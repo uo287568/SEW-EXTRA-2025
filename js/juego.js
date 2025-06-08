@@ -3,7 +3,7 @@ class Juego {
         this.questions = [
             {
                 question: "¿Cuál de los siguientes NO es un plato típico de San Tirso de Abres?",
-                options: ["Fabada asturiana", "Pasta carbonara", "Cachopo", "Salmón del río Eo", "Pote asturiano", "Tarta de Santiago"],
+                options: ["Fabada asturiana", "Pasta carbonara", "Cachopo", "Salmón del río Eo", "Pote asturiano"],
                 answer: 1
             },
             {
@@ -53,8 +53,8 @@ class Juego {
             }
         ];
 
-        this.quizContainer = document.querySelector('aside');
-        this.resultContainer = document.querySelector('footer');
+        this.quizContainer = document.querySelectorAll('section')[0];
+        this.resultContainer = document.querySelectorAll('section')[1];
         this.submitButton = document.querySelector('button');
     }
 
@@ -62,6 +62,7 @@ class Juego {
         this.questions.forEach((question, index) => {
             const questionArticle = document.createElement('article');
             questionArticle.innerHTML = `<h4>${index + 1}. ${question.question}</h4>`;
+            
             question.options.forEach((option, optionIndex) => {
                 const optionInput = document.createElement('input');
                 optionInput.type = 'radio';
@@ -70,10 +71,13 @@ class Juego {
 
                 const optionLabel = document.createElement('label');
                 optionLabel.textContent = option;
-                optionLabel.appendChild(optionInput);
-                
-                questionArticle.appendChild(optionLabel);
-                questionArticle.appendChild(document.createElement('br'));
+
+                optionLabel.insertBefore(optionInput, optionLabel.firstChild);
+
+                const optionContainer = document.createElement('p');
+                optionContainer.appendChild(optionLabel);
+
+                questionArticle.appendChild(optionContainer);
             });
             this.quizContainer.appendChild(questionArticle);
         });
@@ -81,15 +85,24 @@ class Juego {
 
     showResult() {
         const answerInputs = document.querySelectorAll('input[type="radio"]:checked');
+        this.resultContainer.textContent = '';
+
+        if (!this.resultContainer.querySelector('h3')) {
+            const heading = document.createElement('h3');
+            heading.textContent = 'Resultado del test';
+            this.resultContainer.appendChild(heading);
+        }
+
         if (answerInputs.length !== this.questions.length) {
-            this.resultContainer.textContent = 'Por favor, responde todas las preguntas.';
+            const warning = document.createElement('p');
+            warning.textContent = 'Por favor, responde todas las preguntas.';
+            this.resultContainer.appendChild(warning);
             return;
-        } else {
-            this.resultContainer.textContent = '';
         }
 
         let score = 0;
         const feedbackParagraph = document.createElement('p');
+
         this.questions.forEach((question, index) => {
             const correctAnswerIndex = question.answer;
             const correctAnswer = question.options[correctAnswerIndex];
@@ -106,6 +119,6 @@ class Juego {
         this.resultContainer.appendChild(feedbackParagraph);
         this.resultContainer.appendChild(scoreFeedback);
 
-        this.submitButton.style.display = 'none';
+        this.submitButton.remove();
     }
 }

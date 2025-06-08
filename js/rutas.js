@@ -120,7 +120,7 @@ class Rutas {
             fileInfoHTML += `<p>Lugar de inicio: ${lugarInicio}</p>`;
 
             const hitos = ruta.getElementsByTagName('hito');
-            fileInfoHTML += `<h5>Hitos:</h5>`;
+            fileInfoHTML += `<section><h5>Hitos:</h5>`;
             for (let k = 0; k < hitos.length; k++) {
                 const hito = hitos[k];
                 const nombreHito = hito.getElementsByTagName('nombre')[0].textContent;
@@ -135,11 +135,11 @@ class Rutas {
                     const fotoHito = fotosHito[l].textContent;
                     fileInfoHTML += `<img src="${fotoHito}" alt="${nombreHito} Foto ${l + 1}" />`;
                 }
-
                 fileInfoHTML += `</article>`;
             }
+            fileInfoHTML += `</section>`;
             fileInfoHTML += `<h5>Planimetría de la ruta:</h5>`;
-            fileInfoHTML += `<aside></aside>`;
+            fileInfoHTML += `<article></article>`;
             const kmlTexto = ruta.getElementsByTagName('kml')[0].textContent.trim();
             this.kmls.push(kmlTexto);
 
@@ -156,11 +156,11 @@ class Rutas {
     crearMapaDinamico() {
         mapboxgl.accessToken = this.mapbox_token;
 
-        const asides = document.querySelectorAll('aside');
+        const mapContainers = document.querySelectorAll('main > article > article > article');
 
-        asides.forEach((aside, i) => {
+        mapContainers.forEach((mapContainer, i) => {
             const mapa = new mapboxgl.Map({
-                container: aside,
+                container: mapContainer,
                 style: 'mapbox://styles/mapbox/streets-v11',
                 zoom: 14
             });
@@ -171,10 +171,7 @@ class Rutas {
                 unit: 'metric'
             }));
 
-            // Ruta del archivo KML para esta ruta
             const kmlPath = this.kmls[i];
-
-            // Cargar archivo KML con fetch y luego procesar
             fetch(kmlPath)
                 .then(response => {
                     if (!response.ok) {
@@ -212,7 +209,7 @@ class Rutas {
                             }
                         });
 
-                        // Centrar el mapa según las coordenadas de la ruta (primer feature)
+                        // Centrar el mapa según las coordenadas de la ruta (primera coordenada)
                         if (geojson.features.length > 0) {
                             const coords = geojson.features[0].geometry.coordinates;
                             mapa.flyTo({ center: coords, zoom: 13 });
@@ -222,6 +219,8 @@ class Rutas {
                 .catch(error => {
                     console.error(error);
                 });
+
+            mapContainer.insertAdjacentHTML("afterbegin", "<h5>Planimetría de la ruta:</h5>");
         });
     }
 
@@ -249,14 +248,14 @@ class Rutas {
                     const article = rutaArticles[i];
                     if (!article) return;
 
-                    const aside = article.querySelector('aside');
-                    if (!aside) return;
+                    const mapContainer = article.querySelector('main > article > article > article');
+                    if (!mapContainer) return;
 
                     const titulo = document.createElement('h5');
                     titulo.textContent = 'Altimetría de la ruta:';
 
-                    // Insertar título y SVG justo después del aside
-                    aside.insertAdjacentElement('afterend', svgElement);
+                    // Insertar título y SVG justo después de la planimetría
+                    mapContainer.insertAdjacentElement('afterend', svgElement);
                     svgElement.insertAdjacentElement('beforebegin', titulo);
                 })
                 .catch(error => console.error(error));

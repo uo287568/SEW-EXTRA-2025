@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2025 a las 16:01:44
+-- Tiempo de generación: 08-06-2025 a las 11:40:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -48,6 +48,7 @@ DROP TABLE IF EXISTS `imagenes`;
 CREATE TABLE IF NOT EXISTS `imagenes` (
   `img` varchar(40) NOT NULL,
   `id_recurso` int(11) NOT NULL,
+  `descripcion` varchar(60) NOT NULL,
   KEY `imagenes_recurso_fk` (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -17,12 +17,26 @@ class Reservas {
         $this->dbname = "reservas";
     }
 
+    private function conectar() {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        try {
+            $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+        } catch (mysqli_sql_exception $e) {
+            if (str_contains($e->getMessage(), "Unknown database")) {
+                echo "<h2>Error: La base de datos '{$this->dbname}' no existe. Por favor, créala antes de continuar.</h2>";
+            } else {
+                echo "<h2'>Error de conexión: " . htmlspecialchars($e->getMessage()) . "</h2>";
+            }
+            exit;
+        }
+    }
+
     public function registrarUsuario($dni, $nombre, $apellidos, $correo, $contra) {
         if($dni === '' || $nombre === '' || $apellidos === '' || $correo === '' || $contra === '') {
             echo "<p>Por favor, rellena todos los campos de registro.</p>";
         } else {
 
-            $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+            $this->conectar();
     
             if ($this->conn->connect_error) {
                 die("<p>Conexión fallida: " . $this->conn->connect_error . "</p>");
@@ -32,7 +46,12 @@ class Reservas {
             $stmt->bind_param("sssss", $dni, $nombre, $apellidos, $correo, $contra);
     
             if ($stmt->execute()) {
-                echo "<p>Cuenta creada correctamente.</p>";
+                $_SESSION['dnilogin'] = $dni;
+                echo "<p>Cuenta creada correctamente. Redirigiendo...</p>";
+                $stmt->close();
+                $this->conn->close();
+                header("Location: reservas.php");
+                exit();
             } else {
                 echo "<p>Error al insertar el registro: " . $stmt->error . "</p>";
             }
@@ -46,7 +65,7 @@ class Reservas {
         if($dni === '' || $contra === '') {
             echo "<p>Por favor, rellena todos los campos de inicio de sesión.</p>";
         } else {
-            $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+            $this->conectar();
     
             if ($this->conn->connect_error) {
                 die("<p>Conexión fallida: " . $this->conn->connect_error . "</p>");
@@ -60,6 +79,10 @@ class Reservas {
                 $contraresult = $row['contra'];
                 if ($contraresult === $contra) {
                     $_SESSION['dnilogin'] = $dni;
+                    echo "<p>Inicio de sesión correcto. Redirigiendo...</p>";
+                    $this->conn->close();
+                    header("Location: reservas.php");
+                    exit();
                 } else {
                     echo "<p>Credenciales de inicio de sesión inválidas</p>";
                 }
@@ -71,8 +94,16 @@ class Reservas {
         }
     }
 
+    public function cerrarSesion() {
+        session_unset();
+        session_destroy();
+        echo "<p>Sesión cerrada correctamente. Redirigiendo...</p>"; 
+        header("Location: reservas.php");
+        exit();
+    }
+
     public function mostrarImagenes($idrec) {
-        $sql = "SELECT img FROM imagenes WHERE id_recurso = " . $idrec;
+        $sql = "SELECT img, descripcion FROM imagenes WHERE id_recurso = " . $idrec;
         $result = $this->conn->query($sql);
 
         $imagenes = array();
@@ -83,12 +114,12 @@ class Reservas {
         }
 
         foreach ($imagenes as $imagen) {
-            echo "<p><img src='/multimedia/imagenes/" . $imagen['img'] . "' alt='Imagen del recurso " . $idrec . "'></p>";
+            echo "<img src='/multimedia/imagenes/" . $imagen['img'] . "' alt='" . $imagen['descripcion'] . "'>";
         }
     }
 
     public function obtenerRecursosTuristicos() {
-        $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+        $this->conectar();
 
         if ($this->conn->connect_error) {
             die("<p>Conexión fallida: " . $this->conn->connect_error . "</p>");
@@ -102,10 +133,21 @@ class Reservas {
             while ($row = $result->fetch_assoc()) {
                 $recursos[] = $row;
             }
+        } else {
+            echo "<p>No hay recursos turísticos disponibles. Importa los datos para continuar.</p>";
+            $this->conn->close();
+            return;
+        }
+
+        $selected_resource_id = null;
+        if (isset($_POST['recursos_seleccionados']) && is_array($_POST['recursos_seleccionados']) && count($_POST['recursos_seleccionados']) > 0) {
+            $selected_resource_id = $_POST['recursos_seleccionados'][0];
         }
 
         foreach ($recursos as $recurso) {
-            echo "<p><input type='radio' name='recursos_seleccionados[]' value='" . $recurso['id'] . "'>" . $recurso['id'] . ". " . $recurso['nombre'] . " - Tipo: " . $recurso['tipo'] . " - Descripción: " . $recurso['descripcion'] . " - Precio: " . $recurso['precio'] . "€ - Capacidad máxima: " . $recurso['capacidad'] . " personas.</p>";
+            $checked_attr = ($selected_resource_id == $recurso['id']) ? 'checked' : '';
+            
+            echo "<p><input type='radio' name='recursos_seleccionados[]' value='" . htmlspecialchars($recurso['id']) . "' " . $checked_attr . ">" . htmlspecialchars($recurso['id']) . ". " . htmlspecialchars($recurso['nombre']) . " - Tipo: " . htmlspecialchars($recurso['tipo']) . " - Descripción: " . htmlspecialchars($recurso['descripcion']) . " - Precio: " . htmlspecialchars($recurso['precio']) . "€ - Capacidad máxima: " . htmlspecialchars($recurso['capacidad']) . " personas.</p>";
             $this->mostrarImagenes($recurso['id']);
         }
 
@@ -113,7 +155,7 @@ class Reservas {
     }
 
     public function fechaDisponible($idrec, $fecha_ini, $fecha_fin, $personas) {
-        $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+        $this->conectar();
 
         if ($this->conn->connect_error) {
             die("<p>Conexión fallida: " . $this->conn->connect_error . "</p>");
@@ -138,8 +180,6 @@ class Reservas {
 
         // Preparar consulta para sumar reservas ocupadas en un día
         $sqlReserva = "SELECT SUM(cantidad_personas) AS sumcant FROM reservas WHERE id_recurso = ? AND NOT (fecha_fin < ? OR fecha_ini > ?)";
-
-        // Esta consulta suma las reservas que **se solapan** con la fecha dada.
         $stmtReserva = $this->conn->prepare($sqlReserva);
 
         $period = new DatePeriod(
@@ -150,8 +190,6 @@ class Reservas {
 
         foreach ($period as $date) {
             $dia = $date->format('Y-m-d');
-            // Bind params para la consulta
-            // fecha_fin < ? OR fecha_ini > ? -> son los días fuera del rango, queremos el opuesto para solapamiento
             $stmtReserva->bind_param("iss", $idrec, $dia, $dia);
             $stmtReserva->execute();
             $resultReserva = $stmtReserva->get_result();
@@ -180,7 +218,7 @@ class Reservas {
             return -1;
         } else {
             if ($this->fechaDisponible($idrec, $fecha_ini, $fecha_fin, $personas)) {
-                $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+                $this->conectar();
         
                 if ($this->conn->connect_error) {
                     die("<p>Conexión fallida: " . $this->conn->connect_error . "</p>");
@@ -223,7 +261,7 @@ class Reservas {
         $precio = $this->calcularPrecio($idrec, $fecha_ini, $fecha_fin, $personas);
         if ($precio >= 0) {
             if ( isset( $_SESSION['dnilogin']) ) {
-                $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+                $this->conectar();
         
                 if ($this->conn->connect_error) {
                     die("<p>Conexión fallida: " . $this->conn->connect_error . "</p>");
@@ -271,7 +309,7 @@ class Reservas {
     }
 
     public function mostrarReservasUsuario($dniusuario) {
-        $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+        $this->conectar();
 
         if ($this->conn->connect_error) {
             die("<p>Conexión fallida: " . $this->conn->connect_error . "</p>");
@@ -310,13 +348,12 @@ class Reservas {
     }
 
     public function anularReserva($idReserva, $dniusuario) {
-        $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+        $this->conectar();
 
         if ($this->conn->connect_error) {
             die("Conexión fallida: " . $this->conn->connect_error);
         }
 
-        // Comprobamos que la reserva pertenece al usuario
         $stmt = $this->conn->prepare("DELETE FROM reservas WHERE id = ? AND id_usuario = ?");
         $stmt->bind_param("is", $idReserva, $dniusuario);
         $stmt->execute();
@@ -337,7 +374,7 @@ class Reservas {
             die("Conexión fallida: " . $this->conn->connect_error);
         }
 
-        $sql_file = __DIR__ . '\php\reservas.sql';
+        $sql_file = __DIR__ . DIRECTORY_SEPARATOR . 'php' . DIRECTORY_SEPARATOR . 'reservas.sql';
         if (!file_exists($sql_file)) {
             die("Error: El archivo SQL no se encuentra en la ruta $sql_file");
         }
@@ -348,6 +385,12 @@ class Reservas {
         $this->conn->select_db($this->dbname);
 
         if ($this->conn->multi_query($queries)) {
+            do {
+                if ($result = $this->conn->store_result()) {
+                    $result->free();
+                }
+            } while ($this->conn->more_results() && $this->conn->next_result());
+
             echo "Base de datos y tablas creadas correctamente.";
         } else {
             echo "Error al crear la base de datos: " . $this->conn->error;
@@ -357,17 +400,17 @@ class Reservas {
     }
 
     public function importarCSV() {
-        $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+        $this->conectar();
         if ($this->conn->connect_error) {
             die("Conexión fallida: " . $this->conn->connect_error);
         }
 
-        $archivo = __DIR__ . '\php\reservas.csv';
+        $archivo = __DIR__ . DIRECTORY_SEPARATOR . 'php' . DIRECTORY_SEPARATOR . 'reservas.csv';
         $file = fopen($archivo, 'r');
 
         $estructura_tablas = [
             'id_recurso,nombre,tipo,valor' => 'contactos',
-            'img,id_recurso' => 'imagenes',
+            'img,id_recurso,descripcion' => 'imagenes',
             'id,nombre,tipo,descripcion,precio,capacidad' => 'recursoturistico',
             'id,id_usuario,id_recurso,fecha_ini,fecha_fin,cantidad_personas,precio' => 'reservas',
             'dni,nombre,apellidos,correo,contra' => 'usuario',
@@ -431,29 +474,26 @@ class Reservas {
     }
 
     public function exportarCSV() {
-        $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->dbname);
+        $this->conectar();
         if ($this->conn->connect_error) {
             die("Conexión fallida: " . $this->conn->connect_error);
         }
 
-        $archivo = __DIR__ . '\php\reservas_export.csv';
+        $archivo = __DIR__ . DIRECTORY_SEPARATOR . 'php' . DIRECTORY_SEPARATOR . 'reservas_export.csv';
         $file = fopen($archivo, 'w');
 
-        // Tablas en orden para exportar (mismo orden que el CSV que diste)
         $tablas = ['contactos', 'imagenes', 'recursoturistico', 'reservas', 'usuario'];
 
         foreach ($tablas as $tabla) {
             $result = $this->conn->query("SELECT * FROM $tabla");
             if ($result) {
-                // Obtener columnas
+                
                 $columnas = array_keys($result->fetch_assoc());
-                // Volver a principio para leer todas las filas
+                
                 $result->data_seek(0);
 
-                // Escribir encabezado columnas
                 fputcsv($file, $columnas);
 
-                // Escribir filas
                 while ($fila = $result->fetch_assoc()) {
                     fputcsv($file, $fila);
                 }
@@ -493,15 +533,17 @@ class Reservas {
         </nav>
     </header>
     <h2>Reservas</h2>
+    <!-- Formulario para la administración de la base de datos
     <form action="reservas.php" method="post">
         <h3>Administración de Base de Datos</h3>
         <button type="submit" name="opcion" value="crear">Crear Base de Datos</button>
         <button type="submit" name="opcion" value="importar">Importar desde CSV</button>
         <button type="submit" name="opcion" value="exportar">Exportar a CSV</button>
-    </form>
+    </form> -->
     <?php
     $reservas = new Reservas();
 
+    /* Administración de la base de datos
     if (isset($_POST["opcion"]) && $_POST["opcion"] == "crear") {
         $reservas->crearBaseDatos();
     }
@@ -512,23 +554,17 @@ class Reservas {
 
     if (isset($_POST["opcion"]) && $_POST["opcion"] == "exportar") {
         $reservas->exportarCSV();
-    }
-    ?>
-    <h3>Registro de usuario</h3>
-    <form action="reservas.php" method="post" name="registroForm">
-        <p>DNI: <input type="text" name="dnireg"></p>
-        <p>Nombre: <input type="text" name="nombrereg"></p>
-        <p>Apellidos: <input type="text" name="apellidosreg"></p>
-        <p>Correo: <input type="text" name="correoreg"></p>
-        <p>Contraseña: <input type="text" name="contraseñareg"></p>
-        <p><button type="submit" name="registro_submit">Registrarse</button></p>
-    </form>
-    <?php
+    }*/
+
     $dni;
     $nombre;
     $apellidos;
     $correo;
     $contra;
+
+    if (isset($_GET['logout'])) {
+        $reservas->cerrarSesion();
+    }
 
     if(isset($_POST["registro_submit"])) {
         $dni = $_POST["dnireg"];
@@ -539,17 +575,7 @@ class Reservas {
 
         $reservas->registrarUsuario($dni, $nombre, $apellidos, $correo, $contra);
     }
-    ?>
-    <hr>
-    <h3>Inicio de sesión</h3>
-    <form action="reservas.php" method="post" name="loginForm">
-        <p>DNI: <input type="text" name="dnilog"></p>
-        <p>Contraseña: <input type="text" name="contraseñalog"></p>
-        <p><button type="submit" name="login_submit">Iniciar sesión</button></p>
-    </form>
-    <?php
-    $dni;
-    $contra;
+
     if(isset($_POST["login_submit"])) {
         $dni = $_POST["dnilog"];
         $contra = $_POST["contraseñalog"];
@@ -562,62 +588,98 @@ class Reservas {
         echo "<p>Inicie sesión para poder reservar los recursos turísticos</p>";
     }
     ?>
-    <hr>
-    <h3>Realizar reserva</h3>
-    <form action="reservas.php" method="post" name="reservaForm">
+    <?php if (isset($_SESSION['dnilogin'])): ?>
+        <form method="get" name="logoutForm">
+            <button type="submit" name="logout">Cerrar sesión</button>
+        </form>
+    <?php else: ?>
         <?php
-        $reservas->obtenerRecursosTuristicos();
+        $show_form = isset($_GET['show']) ? $_GET['show'] : 'login';
         ?>
-        <p>Fecha inicio: <input type="date" name="fecha_ini"></p>
-        <p>Fecha fin: <input type="date" name="fecha_fin"></p>
-        <p>Cantidad de personas: <input type="number" name="personas"></p>
-        <p><button type="submit" name="precio_submit">Calcular precio</button></p>
-        <p><button type="submit" name="reserva_submit" onclick="return confirm('¿Estás seguro de que deseas realizar esta reserva?');">Realizar reserva</button></p>
+
+        <?php if ($show_form === 'register'): ?>
+            <section>
+                <h3>Registro de usuario</h3>
+                <p>Si ya tienes una cuenta, <a href="reservas.php?show=login">inicia sesión aquí</a>.</p>
+                <form action="reservas.php?show=register" method="post" name="registroForm">
+                    <p>DNI: <input type="text" name="dnireg"></p>
+                    <p>Nombre: <input type="text" name="nombrereg"></p>
+                    <p>Apellidos: <input type="text" name="apellidosreg"></p>
+                    <p>Correo: <input type="text" name="correoreg"></p>
+                    <p>Contraseña: <input type="text" name="contraseñareg"></p>
+                    <p><button type="submit" name="registro_submit">Registrarse</button></p>
+                </form>
+            </section>
+        <?php else: ?>
+            <section>
+                <h3>Inicio de sesión</h3>
+                <form action="reservas.php?show=login" method="post" name="loginForm">
+                    <p>DNI: <input type="text" name="dnilog"></p>
+                    <p>Contraseña: <input type="text" name="contraseñalog"></p>
+                    <p><button type="submit" name="login_submit">Iniciar sesión</button></p>
+                </form>
+                <p>¿No tienes cuenta? <a href="reservas.php?show=register">Regístrate aquí</a>.</p>
+            </section>
+        <?php endif; ?>
+    <?php endif; ?>
+    <section>
+        <h3>Realizar reserva</h3>
+        <form action="reservas.php" method="post" name="reservaForm">
+            <?php
+            $reservas->obtenerRecursosTuristicos();
+            ?>
+            <p>Fecha inicio: <input type="date" name="fecha_ini" value="<?php echo isset($_POST['fecha_ini']) ? htmlspecialchars($_POST['fecha_ini']) : ''; ?>" required></p>
+            <p>Fecha fin: <input type="date" name="fecha_fin" value="<?php echo isset($_POST['fecha_fin']) ? htmlspecialchars($_POST['fecha_fin']) : ''; ?>" required></p>
+            <p>Cantidad de personas: <input type="number" name="personas" min="1" value="<?php echo isset($_POST['personas']) ? htmlspecialchars($_POST['personas']) : ''; ?>" required></p>
+            <p><button type="submit" name="precio_submit">Calcular precio</button></p>
+            <p><button type="submit" name="reserva_submit" onclick="return confirm('¿Estás seguro de que deseas realizar esta reserva?');">Realizar reserva</button></p>
+            <?php
+            $idrec = '';
+            $fecha_ini = '';
+            $fecha_fin = '';
+            $personas = '';
+            
+            if(isset($_POST["precio_submit"])) {
+                if(isset($_POST["recursos_seleccionados"]) && is_array($_POST["recursos_seleccionados"])) {
+                    $idrec = $_POST["recursos_seleccionados"][0];
+                } else {
+                    $idrec = '';
+                }
+                $fecha_ini = $_POST["fecha_ini"];
+                $fecha_fin = $_POST["fecha_fin"];
+                $personas = $_POST["personas"];
+
+                $reservas->calcularPrecio($idrec, $fecha_ini, $fecha_fin, $personas);
+            }
+            if(isset($_POST["reserva_submit"])) {
+                if(isset($_POST["recursos_seleccionados"]) && is_array($_POST["recursos_seleccionados"])) {
+                    $idrec = $_POST["recursos_seleccionados"][0];
+                } else {
+                    echo "<p>Por favor, selecciona un recurso.</p>";
+                    exit;
+                }
+                $fecha_ini = $_POST["fecha_ini"];
+                $fecha_fin = $_POST["fecha_fin"];
+                $personas = $_POST["personas"];
+
+                $reservas->realizarReserva($idrec, $fecha_ini, $fecha_fin, $personas);
+            }
+            ?>
+        </form>
+    </section>
+    <section>
+        <h3>Mis reservas</h3>
         <?php
-        $idrec;
-        $fecha_ini;
-        $fecha_fin;
-        $personas;
-        
-        if(isset($_POST["precio_submit"])) {
-            if(isset($_POST["recursos_seleccionados"]) && is_array($_POST["recursos_seleccionados"])) {
-                $idrec = $_POST["recursos_seleccionados"][0];
-            } else {
-                $idrec = '';
-            }
-            $fecha_ini = $_POST["fecha_ini"];
-            $fecha_fin = $_POST["fecha_fin"];
-            $personas = $_POST["personas"];
-
-            $reservas->calcularPrecio($idrec, $fecha_ini, $fecha_fin, $personas);
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id_reserva_anular']) && isset($_SESSION['dnilogin'])) {
+            $idReserva = intval($_POST['id_reserva_anular']);
+            $reservas->anularReserva($idReserva, $_SESSION['dnilogin']);
         }
-        if(isset($_POST["reserva_submit"])) {
-            if(isset($_POST["recursos_seleccionados"]) && is_array($_POST["recursos_seleccionados"])) {
-                $idrec = $_POST["recursos_seleccionados"][0];
-            } else {
-                echo "<p>Por favor, selecciona un recurso.</p>";
-                exit;
-            }
-            $fecha_ini = $_POST["fecha_ini"];
-            $fecha_fin = $_POST["fecha_fin"];
-            $personas = $_POST["personas"];
-
-            $reservas->realizarReserva($idrec, $fecha_ini, $fecha_fin, $personas);
+        if (isset($_SESSION['dnilogin'])) {
+            $reservas->mostrarReservasUsuario($_SESSION['dnilogin']);
+        } else {
+            echo "<p>Debes iniciar sesión para ver tus reservas.</p>";
         }
         ?>
-    </form>
-    <hr>
-    <h3>Mis reservas</h3>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id_reserva_anular']) && isset($_SESSION['dnilogin'])) {
-        $idReserva = intval($_POST['id_reserva_anular']);
-        $reservas->anularReserva($idReserva, $_SESSION['dnilogin']);
-    }
-    if (isset($_SESSION['dnilogin'])) {
-        $reservas->mostrarReservasUsuario($_SESSION['dnilogin']);
-    } else {
-        echo "<p>Debes iniciar sesión para ver tus reservas.</p>";
-    }
-    ?>
+    </section>
 </body>
 </html>
