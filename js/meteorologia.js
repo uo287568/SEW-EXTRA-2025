@@ -18,9 +18,10 @@ class Meteorologia {
                 const humedad = dia.humidity;
                 const lluvia = dia.rain ?? 0;
                 const iconoTiempo = `https://openweathermap.org/img/wn/${dia.weather[0].icon}.png`;
+                const descripcionClima = dia.weather[0].description;
 
                 const itemDia = $('<li>').appendTo(listaDias);
-                $('<img>').attr('src', iconoTiempo).attr('alt', 'Weather icon').appendTo(itemDia);
+                $('<img>').attr('src', iconoTiempo).attr('alt', `Icono de tiempo: ${descripcionClima}`).appendTo(itemDia);
 
                 const listaDetalles = $('<ul>').appendTo(itemDia);
                 $('<li>').text(`Fecha: ${fecha}`).appendTo(listaDetalles);
